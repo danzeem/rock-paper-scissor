@@ -1,0 +1,70 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            let humanScore = 0;
+            let computerScore = 0;
+            function getComputerChoice(){
+                let computer_choice= Math.floor(Math.random()*100) + 1;
+                if (computer_choice >= 66 && computer_choice <= 100 ){
+                    return "scissors";
+                }else if (computer_choice >= 33 && computer_choice <= 65){
+                    return "paper";
+                }else{
+                    return "rock";
+                }
+            }
+            function getHumanChoice(){
+                let human_choice = prompt("rock paper or scissors?");
+                return human_choice;
+            }
+            function playRound(humanChoice, computerChoice) {
+            if (humanChoice.toLowerCase() === computerChoice){
+                return "draw";
+            }else if((humanChoice.toLowerCase() === "rock" && computerChoice === "paper") ||
+                    (humanChoice.toLowerCase() === "scissors" && computerChoice === "rock") ||
+                    (humanChoice.toLowerCase() === "paper" && computerChoice === "scissors")){
+                computerScore++;
+                return "You lose! " + computerChoice +" beats " + humanChoice;
+            }else{
+                humanScore++;
+                return ("You Win! " + humanChoice + " beats " +computerChoice);
+            }
+            }
+
+            let humanSelection ="";
+            let computerSelection ="";
+            function playGame(fiveRound){
+                    for (let i = 0; i < 5; i++) {
+                         humanSelection = getHumanChoice();
+                         computerSelection = getComputerChoice();
+                      playRound(humanSelection, computerSelection);
+                      console.log("Human Score: " + humanScore);
+                      console.log("Computer Score: " + computerScore);      
+                      }
+                      if(humanScore === computerScore){
+                      console.log("Human Score: " + humanScore);
+                      console.log("Computer Score: " + computerScore);      
+                      console.log("Final Score: " + humanScore + " - " + computerScore); 
+                      console.log("Draw");
+                      }else if(humanScore > computerScore){
+                      console.log("Human Score: " + humanScore);
+                      console.log("Computer Score: " + computerScore);      
+                      console.log("Final Score: " + humanScore + " - " + computerScore); 
+                      console.log("You Win!");                       
+                      }else{
+                      console.log("Human Score: " + humanScore);
+                      console.log("Computer Score: " + computerScore);      
+                      console.log("Final Score: " + humanScore + " - " + computerScore); 
+                      console.log("You Lose!");                       
+                      }
+            }
+            playGame(playRound);
+        </script>
+    </body>
+    </html>
